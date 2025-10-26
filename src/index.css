@@ -1,32 +1,24 @@
-/* Importando uma fonte moderna (opcional, mas recomendado) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
 
-/* --- Variáveis de Cor (Baseadas no seu cartão) --- */
 :root {
-  /* Cor principal (roxo vibrante do seu cartão) */
   --primary-purple: #6c00ff;
   --primary-purple-light: #8a4bff;
   
-  /* Cores de fundo */
   --bg-dark: #0f0f1a;
   --bg-light-dark: #1a1a2e;
   --bg-light: #f4f4f9;
 
-  /* NOVO: Cores adicionais para o gradiente animado */
-  --gradient-color-1: #1a1a2e; /* Escuro, quase preto */
-  --gradient-color-2: #3d007c; /* Um roxo mais profundo */
+  --gradient-color-1: #1a1a2e;
+  --gradient-color-2: #3d007c;
   
-  /* Cores de Texto */
   --text-light: #f0f0f0;
   --text-dark: #333333;
   --text-primary: var(--primary-purple-light);
   
-  /* Fontes */
   --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* --- Reset e Configuração Global --- */
 * {
   margin: 0;
   padding: 0;
@@ -39,7 +31,7 @@ html {
 
 body {
   font-family: var(--font-main);
-  background: var(--bg-dark); /* Fundo padrão escuro para o resto do site */
+  background: var(--bg-dark);
   color: var(--text-light);
   overflow-x: hidden;
 }
@@ -59,17 +51,15 @@ img {
   height: auto;
 }
 
-/* --- Estrutura Principal --- */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
   width: 100%;
-  position: relative; /* Para z-index do conteúdo */
-  z-index: 2; /* Garante que o conteúdo fique acima da animação de fundo */
+  position: relative;
+  z-index: 2;
 }
 
-/* --- Header (com Efeito Blur) --- */
 .header {
   position: sticky;
   top: 0;
@@ -119,7 +109,6 @@ img {
   padding-bottom: 0.25rem;
 }
 
-/* Animação de sublinhado */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -138,18 +127,16 @@ img {
   transform-origin: left;
 }
 
-/* --- Seção Hero --- */
 .hero {
   min-height: 90vh;
   display: flex;
   align-items: center;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  position: relative; /* Essencial para a animação de fundo */
-  overflow: hidden; /* Garante que o gradiente não vaze */
+  position: relative;
+  overflow: hidden;
 }
 
-/* NOVO: Camada de fundo animada para o Hero */
 .hero-background-animation {
   position: absolute;
   top: 0;
@@ -163,14 +150,13 @@ img {
     var(--primary-purple),
     var(--gradient-color-1)
   );
-  background-size: 400% 400%; /* Ajustado para um movimento mais sutil */
-  animation: subtleGradientShift 25s ease infinite; /* Animação mais lenta e suave */
-  z-index: 1; /* Fica abaixo do conteúdo do hero */
-  filter: blur(80px); /* NOVO: Efeito de blur para suavizar a transição e simular "mistura" */
-  opacity: 0.7; /* Suaviza ainda mais a animação */
+  background-size: 400% 400%;
+  animation: subtleGradientShift 25s ease infinite;
+  z-index: 1;
+  filter: blur(80px);
+  opacity: 0.7;
 }
 
-/* NOVO: Keyframes da Animação do Gradiente */
 @keyframes subtleGradientShift {
   0% {
     background-position: 0% 50%;
@@ -191,7 +177,7 @@ img {
 
 .hero-content {
   max-width: 650px;
-  position: relative; /* Garante que o conteúdo fica acima do blur */
+  position: relative;
   z-index: 2;
 }
 
@@ -219,7 +205,6 @@ img {
   margin-bottom: 2rem;
 }
 
-/* Botão CTA (Call to Action) Dinâmico */
 .cta-button {
   background: var(--primary-purple);
   color: var(--text-light);
@@ -240,7 +225,6 @@ img {
   box-shadow: 0 15px 30px -10px rgba(108, 0, 255, 0.8);
 }
 
-/* --- Seção Serviços (TEMA CLARO) --- */
 .services {
   padding: 6rem 0;
   background: var(--bg-light);
@@ -285,8 +269,8 @@ img {
   padding: 2.5rem 2rem;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
   transition: all 0.3s ease;
-  position: relative; /* Para o ::before */
-  overflow: hidden; /* Para o ::before */
+  position: relative;
+  overflow: hidden;
 }
 
 .service-card::before {
@@ -304,7 +288,7 @@ img {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.service-card:hover::before { /* NOVO: Animação de borda no hover */
+.service-card:hover::before {
   opacity: 1;
 }
 
@@ -334,7 +318,6 @@ img {
   line-height: 1.6;
 }
 
-/* --- Footer (Contato) --- */
 .footer {
   background: var(--bg-light-dark);
   padding: 4rem 0;
@@ -411,26 +394,21 @@ img {
   font-size: 0.9rem;
 }
 
-/* --- INÍCIO: Media Queries para Responsividade --- */
-
-/* === Telas Médias (ex: Tablets em modo retrato) === */
 @media (max-width: 992px) {
   .container {
-    padding: 0 1.5rem; /* Reduz o padding lateral */
+    padding: 0 1.5rem;
   }
 
   .hero-title {
-    font-size: 3rem; /* Diminui um pouco o título principal */
+    font-size: 3rem;
   }
 
   .hero-content {
-    /* Centraliza o conteúdo do hero em telas médias */
     max-width: 100%;
     text-align: center;
   }
 
   .footer-content {
-    /* Empilha o conteúdo do footer mais cedo */
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -442,61 +420,52 @@ img {
   }
 }
 
-/* === Telas Pequenas (ex: Smartphones) === */
 @media (max-width: 768px) {
   .container {
-    padding: 0 1rem; /* Padding lateral mínimo */
+    padding: 0 1rem;
   }
 
-  /* --- Header e Navegação --- */
   .header {
-    /* Remove o 'sticky' no celular para evitar que a navegação
-       empilhada ocupe muito espaço na tela */
     position: static;
     padding: 1.5rem 0;
 
-    /* Remove efeitos de blur, pois não é mais flutuante */
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    background: var(--bg-dark); /* Garante um fundo sólido */
+    background: var(--bg-dark);
   }
 
   .nav-content {
-    /* Empilha o logo e os links */
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
   }
 
   .nav-links {
-    /* Garante que os links fiquem centralizados */
     justify-content: center;
-    gap: 1.5rem; /* Espaço menor entre links */
+    gap: 1.5rem;
     padding: 0;
   }
 
-  /* --- Seção Hero --- */
   .hero {
-    min-height: auto; /* Altura automática */
+    min-height: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
 
   .hero-title {
-    font-size: 2.5rem; /* Título bem menor para celular */
+    font-size: 2.5rem;
     line-height: 1.3;
   }
 
   .hero-subtitle {
-    font-size: 0.9rem; /* Subtítulo menor */
+    font-size: 0.9rem;
   }
 
   .hero-description {
-    font-size: 1rem; /* Descrição menor */
+    font-size: 1rem;
     margin-bottom: 2.5rem;
   }
 
-  /* --- Seção Serviços --- */
   .services {
     padding: 4rem 0;
   }
@@ -510,13 +479,12 @@ img {
   }
 
   .services-grid {
-    /* Força uma única coluna no celular */
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   .service-card {
-    padding: 2rem 1.5rem; /* Menos padding interno no card */
+    padding: 2rem 1.5rem;
   }
 
   .card-title {
@@ -527,13 +495,11 @@ img {
     font-size: 0.9rem;
   }
 
-  /* --- Footer --- */
   .footer {
     padding: 3rem 0;
   }
 
   .footer-contact li {
-     /* Garante que o texto não fique colado no ícone */
      gap: 1rem;
   }
 
@@ -542,5 +508,3 @@ img {
     height: 130px;
   }
 }
-
-/* --- FIM: Media Queries para Responsividade --- */

@@ -5,15 +5,12 @@ import {
   FiDatabase,
   FiHardDrive,
   FiMail,
-  // FiPhone, // <-- CORREÇÃO 1: Removido pois não estava sendo usado.
 } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
-// Importe seus ativos
-import logo from './assets/logo.svg'; // Verifique se o nome é 'logo.png' ou 'logo.svg'
+import logo from './assets/logo.svg';
 import qrcode from './assets/qrcode.png';
 
-// --- Dados dos Serviços (do seu cartão) ---
 const services = [
   {
     icon: <FiCode className="card-icon" />,
@@ -37,44 +34,35 @@ const services = [
   },
 ];
 
-// --- Variantes de Animação (para Framer Motion) ---
-
-// Animação para "fade in" subindo
 const fadeInAnimation = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  // CORREÇÃO 2: Adicionado 'as const' para o TypeScript entender o tipo literal.
   transition: { duration: 0.6, ease: 'easeInOut' as const },
 };
 
-// Animação de container para "stagger" (efeito cascata)
 const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Tempo entre a animação de cada filho
+      staggerChildren: 0.2,
     },
   },
 };
 
-// Animação para os itens "filho" do stagger
 const staggerItem = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
-  // CORREÇÃO 2: Adicionado 'as const' para o TypeScript entender o tipo literal.
   transition: { duration: 0.5, ease: 'easeOut' as const },
 };
 
 function App() {
-  // Hook para efeito parallax sutil no título (opcional, mas dinâmico)
   const { scrollYProgress } = useScroll();
   const parallaxY = useTransform(scrollYProgress, [0, 0.5], ['0%', '50%']);
 
   return (
     <>
-      {/* --- HEADER --- */}
       <motion.header
         className="header"
         initial={{ y: -100, opacity: 0 }}
@@ -97,10 +85,7 @@ function App() {
       </motion.header>
 
       <main>
-
-        {/* --- SEÇÃO HERO --- */}
         <section id="home" className="hero">
-          {/* NOVO: Div para a animação de fundo */}
           <div className="hero-background-animation"></div>
           <div className="container">
             <motion.div
@@ -120,7 +105,7 @@ function App() {
                 Especialistas em sites e sistemas personalizados que impulsionam o seu negócio.
               </motion.p>
               <motion.a
-                href="https://wa.me/92984615420?text=Olá DNSites, gostaria de solicitar orçamento para uma criação de um Site/Sistema."
+                href="https://wa.me/92984615420?text=Olá DNSites, gostaria de solicitar orçamento para uma criação/manutenção de um Site/Sistema."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cta-button"
@@ -134,7 +119,7 @@ function App() {
             </motion.div>
           </div>
         </section>
-        {/* --- SEÇÃO SERVIÇOS --- */}
+        
         <section id="services" className="services">
           <div className="container">
             <motion.h2 className="section-title" {...fadeInAnimation}>
@@ -149,14 +134,14 @@ function App() {
               variants={staggerContainer}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.2 }} // Começa a animar quando 20% estiver visível
+              viewport={{ once: true, amount: 0.2 }}
             >
               {services.map((service, index) => (
                 <motion.div
                   key={index}
                   className="service-card"
-                  variants={staggerItem} // Animação em cascata
-                  whileHover={{ y: -10, scale: 1.03 }} // Animação de HOVER
+                  variants={staggerItem}
+                  whileHover={{ y: -10, scale: 1.03 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
                   <div className="card-content">
@@ -171,7 +156,6 @@ function App() {
         </section>
       </main>
 
-      {/* --- FOOTER (CONTATO) --- */}
       <motion.footer
         id="contact"
         className="footer"
