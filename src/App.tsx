@@ -5,7 +5,7 @@ import {
   FiDatabase,
   FiHardDrive,
   FiMail,
-  FiPhone,
+  // FiPhone, // <-- CORREÇÃO 1: Removido pois não estava sendo usado.
 } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
@@ -44,7 +44,8 @@ const fadeInAnimation = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeInOut' },
+  // CORREÇÃO 2: Adicionado 'as const' para o TypeScript entender o tipo literal.
+  transition: { duration: 0.6, ease: 'easeInOut' as const },
 };
 
 // Animação de container para "stagger" (efeito cascata)
@@ -62,7 +63,8 @@ const staggerContainer = {
 const staggerItem = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: 'easeOut' },
+  // CORREÇÃO 2: Adicionado 'as const' para o TypeScript entender o tipo literal.
+  transition: { duration: 0.5, ease: 'easeOut' as const },
 };
 
 function App() {
