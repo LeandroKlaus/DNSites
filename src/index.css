@@ -1,0 +1,546 @@
+/* Importando uma fonte moderna (opcional, mas recomendado) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+
+/* --- Variáveis de Cor (Baseadas no seu cartão) --- */
+:root {
+  /* Cor principal (roxo vibrante do seu cartão) */
+  --primary-purple: #6c00ff;
+  --primary-purple-light: #8a4bff;
+  
+  /* Cores de fundo */
+  --bg-dark: #0f0f1a;
+  --bg-light-dark: #1a1a2e;
+  --bg-light: #f4f4f9;
+
+  /* NOVO: Cores adicionais para o gradiente animado */
+  --gradient-color-1: #1a1a2e; /* Escuro, quase preto */
+  --gradient-color-2: #3d007c; /* Um roxo mais profundo */
+  
+  /* Cores de Texto */
+  --text-light: #f0f0f0;
+  --text-dark: #333333;
+  --text-primary: var(--primary-purple-light);
+  
+  /* Fontes */
+  --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* --- Reset e Configuração Global --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-dark); /* Fundo padrão escuro para o resto do site */
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--text-light);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Estrutura Principal --- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+  position: relative; /* Para z-index do conteúdo */
+  z-index: 2; /* Garante que o conteúdo fique acima da animação de fundo */
+}
+
+/* --- Header (com Efeito Blur) --- */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem 0;
+
+  background: rgba(15, 15, 26, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+/* Animação de sublinhado */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-purple);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* --- Seção Hero --- */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  position: relative; /* Essencial para a animação de fundo */
+  overflow: hidden; /* Garante que o gradiente não vaze */
+}
+
+/* NOVO: Camada de fundo animada para o Hero */
+.hero-background-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    var(--gradient-color-1),
+    var(--gradient-color-2),
+    var(--primary-purple),
+    var(--gradient-color-1)
+  );
+  background-size: 400% 400%; /* Ajustado para um movimento mais sutil */
+  animation: subtleGradientShift 25s ease infinite; /* Animação mais lenta e suave */
+  z-index: 1; /* Fica abaixo do conteúdo do hero */
+  filter: blur(80px); /* NOVO: Efeito de blur para suavizar a transição e simular "mistura" */
+  opacity: 0.7; /* Suaviza ainda mais a animação */
+}
+
+/* NOVO: Keyframes da Animação do Gradiente */
+@keyframes subtleGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero-content {
+  max-width: 650px;
+  position: relative; /* Garante que o conteúdo fica acima do blur */
+  z-index: 2;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--text-light);
+  line-height: 1.2;
+  margin: 1rem 0;
+  text-shadow: 0 4px 15px rgba(108, 0, 255, 0.3);
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+/* Botão CTA (Call to Action) Dinâmico */
+.cta-button {
+  background: var(--primary-purple);
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 1.8rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(108, 0, 255, 0.6);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px -10px rgba(108, 0, 255, 0.8);
+}
+
+/* --- Seção Serviços (TEMA CLARO) --- */
+.services {
+  padding: 6rem 0;
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.services .section-title {
+  color: var(--text-dark);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--text-light);
+  opacity: 0.7;
+  margin-bottom: 4rem;
+}
+
+.services .section-subtitle {
+  color: var(--text-dark);
+  opacity: 0.8;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  position: relative; /* Para o ::before */
+  overflow: hidden; /* Para o ::before */
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px; 
+  padding: 1px;
+  background: linear-gradient(135deg, var(--primary-purple), #ffffff);
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.service-card:hover::before { /* NOVO: Animação de borda no hover */
+  opacity: 1;
+}
+
+
+.service-card .card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* --- Footer (Contato) --- */
+.footer {
+  background: var(--bg-light-dark);
+  padding: 4rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+
+.footer-info {
+  max-width: 400px;
+}
+
+.footer-logo-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.footer-contact {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: var(--text-light);
+  opacity: 0.8;
+}
+
+.contact-icon {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.footer-qr {
+  text-align: center;
+}
+
+.footer-qr img {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  background: white;
+  padding: 10px;
+}
+
+.footer-qr p {
+  margin-top: 0.5rem;
+  color: var(--text-light);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
+
+/* --- INÍCIO: Media Queries para Responsividade --- */
+
+/* === Telas Médias (ex: Tablets em modo retrato) === */
+@media (max-width: 992px) {
+  .container {
+    padding: 0 1.5rem; /* Reduz o padding lateral */
+  }
+
+  .hero-title {
+    font-size: 3rem; /* Diminui um pouco o título principal */
+  }
+
+  .hero-content {
+    /* Centraliza o conteúdo do hero em telas médias */
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .footer-content {
+    /* Empilha o conteúdo do footer mais cedo */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .footer-info {
+    align-items: center;
+  }
+}
+
+/* === Telas Pequenas (ex: Smartphones) === */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem; /* Padding lateral mínimo */
+  }
+
+  /* --- Header e Navegação --- */
+  .header {
+    /* Remove o 'sticky' no celular para evitar que a navegação
+       empilhada ocupe muito espaço na tela */
+    position: static;
+    padding: 1.5rem 0;
+
+    /* Remove efeitos de blur, pois não é mais flutuante */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg-dark); /* Garante um fundo sólido */
+  }
+
+  .nav-content {
+    /* Empilha o logo e os links */
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-links {
+    /* Garante que os links fiquem centralizados */
+    justify-content: center;
+    gap: 1.5rem; /* Espaço menor entre links */
+    padding: 0;
+  }
+
+  /* --- Seção Hero --- */
+  .hero {
+    min-height: auto; /* Altura automática */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem; /* Título bem menor para celular */
+    line-height: 1.3;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem; /* Subtítulo menor */
+  }
+
+  .hero-description {
+    font-size: 1rem; /* Descrição menor */
+    margin-bottom: 2.5rem;
+  }
+
+  /* --- Seção Serviços --- */
+  .services {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    margin-bottom: 2.5rem;
+  }
+
+  .services-grid {
+    /* Força uma única coluna no celular */
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    padding: 2rem 1.5rem; /* Menos padding interno no card */
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    padding: 3rem 0;
+  }
+
+  .footer-contact li {
+     /* Garante que o texto não fique colado no ícone */
+     gap: 1rem;
+  }
+
+  .footer-qr img {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+/* --- FIM: Media Queries para Responsividade --- */
